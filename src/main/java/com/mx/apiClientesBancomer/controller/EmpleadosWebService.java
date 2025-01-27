@@ -1,4 +1,4 @@
-package com.mx.apiClientesBancomer.model;
+package com.mx.apiClientesBancomer.controller;
 
 import java.util.List;
 
@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.mx.apiClientesBancomer.model.Empleados;
 import com.mx.apiClientesBancomer.service.EmpleadoServImp;
 
 // Web service: Es una tecnologia que me permite comunicar 2 componentes
