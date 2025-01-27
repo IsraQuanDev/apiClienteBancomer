@@ -1,5 +1,7 @@
 package com.mx.apiClientesBancomer.service;
 
+import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,23 +47,58 @@ public class EmpleadoServImp implements EmpleadoServ {
 	    // polimorfismo puro
 	}
 
+	@Transactional(readOnly=true)
 	@Override
 	public Empleados buscarId(int idEmple) {
 		// TODO Auto-generated method stub
-		return null;
+		// declarar una variable de tipo objeto
+		Empleados empleadoEncontrado=dao.findById(idEmple).orElse(null);
+		return empleadoEncontrado;
 	}
 
 	@Override
 	public void editar(Empleados empleado) {
 		// TODO Auto-generated method stub
+		dao.save(empleado);
 		
 	}
 
+	@Transactional
 	@Override
 	public void eliminarXid(int idEmple) {
 		// TODO Auto-generated method stub
 		
+		dao.deleteById(idEmple);}
+
+
+	@Override
+	public List<Empleados> buscarXNombre(String empleado) {
+		// TODO Auto-generated method stub
+		 List<Empleados> lista = dao.findByNombre(empleado);
+		 return lista;
+		 
 	}
 	
+	// Realizar la logica sin utilizar el resorte
+
+	@Override 
+	public List<Empleados> buscarXfechaNacim(Date fechaNacim) {
+	    // Lista para almacenar los empleados que coincidan con la fecha
+	    List<Empleados> lista = new ArrayList<>();
+	    
+	    // Iterar sobre la lista de empleados
+	    for (Empleados empleado : listar()) {
+	        // Comparar la fecha de nacimiento
+	        if (empleado.getFechNaci().equals(fechaNacim)) {
+	            lista.add(empleado);
+	        }
+	    }
+	    
+	    return lista;
+	}
+
 	
+	
+	
+
 }
